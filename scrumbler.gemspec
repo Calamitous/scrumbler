@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/scrumbler.rb",
+    "scrumbler.gemspec",
     "spec/scrumbler_spec.rb",
     "spec/spec_helper.rb"
   ]
