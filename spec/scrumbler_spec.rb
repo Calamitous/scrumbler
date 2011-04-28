@@ -59,6 +59,31 @@ describe 'Scrumbler' do
       test_string = 'How, without interjections?'
       Scrumbler.scrumble(test_string).should match(/How, w.....t i..........s?/)
     end
+
+    it 'handles single quoted text' do
+      test_string = "'Magic belly'"
+      Scrumbler.scrumble(test_string).should match(/'M...c b...y'/)
+    end
+
+    it 'handles single quoted word' do
+      test_string = "'Magic' belly"
+      Scrumbler.scrumble(test_string).should match(/'M...c' b...y/)
+    end
+
+    it 'handles double quoted text' do
+      test_string = '"Magic belly"'
+      Scrumbler.scrumble(test_string).should match(/\"M...c b...y\"/)
+    end
+
+    it 'handles double quoted word' do
+      test_string = '"Magic" belly'
+      Scrumbler.scrumble(test_string).should match(/\"M...c\" b...y/)
+    end
+
+    it 'handles crazy quotes' do
+      test_string = 'The "Magic" belly \'has\' "crazy quotes"'
+      Scrumbler.scrumble(test_string).should match(/The \"M...c\" b...y 'has' \"c...y q....s\"/)
+    end
   end
 
   describe '.release_the_monkeys!' do
