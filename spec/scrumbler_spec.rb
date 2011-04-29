@@ -84,6 +84,21 @@ describe 'Scrumbler' do
       test_string = 'The "Magic" belly \'has\' "crazy quotes"'
       Scrumbler.scrumble(test_string).should match(/The \"M...c\" b...y 'has' \"c...y q....s\"/)
     end
+
+    it 'handles single quotes and contractions simultaneously' do
+      test_string = "'don't won't' 'can't' 'shouldn't couldn't wouldn't'"
+      Scrumbler.scrumble(test_string).should match(/'d...t w...t' 'c...t' 's.......t c......t w......t'/)
+    end
+
+    it 'handles all quotes and contractions simultaneously' do
+      test_string = "\"'don't won't' 'can't' 'shouldn't couldn't wouldn't'\""
+      Scrumbler.scrumble(test_string).should match(/"'d...t w...t' 'c...t' 's.......t c......t w......t'"/)
+    end
+
+    it 'handles extra-crazy quotes' do
+      test_string = "The 'quick brown fox doesn't jump' \"over the lazy dog\""
+      Scrumbler.scrumble(test_string).should match(/The 'q...k b...n fox d....'t j..p' \"o..r the l..y dog\"/)
+    end
   end
 
   describe '.release_the_monkeys!' do
